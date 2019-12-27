@@ -647,7 +647,7 @@ footer {
 @media only screen and (max-width: 510px) {
     nav a{
         font-size: 10pt;
-        margin: 10px;
+        margin: 15px 10px;
     }
 
     .portfolio {
