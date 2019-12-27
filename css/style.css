@@ -645,6 +645,11 @@ footer {
 }
 
 @media only screen and (max-width: 510px) {
+    nav a{
+        font-size: 10pt;
+        margin: 10px;
+    }
+
     .portfolio {
         padding-top: 200px;
         height: 1200px;
