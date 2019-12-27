@@ -60,20 +60,32 @@ nav a:hover {
 }
 
 .portfolio {
+    padding: 300px 0;
     background-color: #56913C;
     width: 100%;
     height: 860px;
 }
 
 .cards {
-    padding-top: 300px;
     justify-content: center;
     display: grid;
     grid-template-columns: 400px 400px 400px;
     grid-template-rows: 220px 220px;
     grid-template-areas:
-        ". . ."
+        "pcard1 pcard2 pcard3"
         "action action action";
+}
+
+.pcard1 {
+    grid-area: pcard1;
+}
+
+.pcard2 {
+    grid-area: pcard2;
+}
+
+.pcard3 {
+    grid-area: pcard3;
 }
 
 .card {
@@ -200,6 +212,7 @@ nav a:hover {
 }
 
 .bars {
+    grid-area: bars;
     margin: auto 0;
     padding-left: 50px;
 }
@@ -269,6 +282,7 @@ nav a:hover {
 }
 
 .person {
+    grid-area: person;
     margin: 0 auto;
     padding-right: 50px;
 }
@@ -474,4 +488,190 @@ footer {
 #footer-copyright p {
     margin: 0;
     text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    .workplace {
+        height: 558px;
+    }
+
+    .workplace img {
+        width: 700px;
+        height: 500px;
+    }
+
+    .cards {
+        grid-template-columns: 300px 300px 300px;
+    }
+
+    .contentBox h2 {
+        font-size: 1.08em;
+    }
+
+    .contentBox p {
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (max-width: 910px) {
+    .workplace {
+        height: 300px;
+    }
+
+    .workplace img {
+        width: 500px;
+        height: 300px;
+    }
+
+    .cards {
+        grid-template-columns: 300px 300px;
+        grid-template-rows: 220px 220px 220px;
+    }
+
+    .cards {
+        grid-template-areas:
+        "pcard1 pcard2"
+        "pcard3 pcard3"
+        "action action";
+    }
+
+    .portfolio {
+        height: 1080px;
+    }
+
+    .sp-container {
+        grid-template-columns: 300px 200px;
+        grid-template-rows: 100%;
+    }
+
+    .hexagon {
+        position: relative;
+        width: 200px; 
+        height: 115.47px;
+        margin: 57.74px auto;
+        background-image: url(/img/martin.jpg);
+        background-size: auto 230.9401px;
+        background-position: center;
+      }
+      
+      .hexTop,
+      .hexBottom {
+        position: absolute;
+        z-index: 1;
+        width: 141.42px;
+        height: 141.42px;
+        overflow: hidden;
+        -webkit-transform: scaleY(0.5774) rotate(-45deg);
+        -ms-transform: scaleY(0.5774) rotate(-45deg);
+        transform: scaleY(0.5774) rotate(-45deg);
+        background: inherit;
+        left: 29.29px;
+      }
+      
+      /*counter transform the bg image on the caps*/
+      .hexTop:after,
+      .hexBottom:after {
+        content: "";
+        position: absolute;
+        width: 200.0000px;
+        height: 115.47005383792516px;
+        -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-57.7350px);
+        -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-57.7350px);
+        transform:          rotate(45deg) scaleY(1.7321) translateY(-57.7350px);
+        -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        transform-origin: 0 0;
+        background: inherit;
+      }
+      
+      .hexTop {
+        top: -70.7107px;
+      }
+      
+      .hexTop:after {
+        background-position: center top;
+      }
+      
+      .hexBottom {
+        bottom: -70.7107px;
+      }
+      
+      .hexBottom:after {
+        background-position: center bottom;
+      }
+      
+      .hexagon:after {
+        content: "";
+        position: absolute;
+        top: 0.0000px;
+        left: 0;
+        width: 200.0000px;
+        height: 115.4701px;
+        z-index: 2;
+        background: inherit;
+      }
+
+    .bars h3 {
+        font-size: 16pt;
+    }
+
+    .person {
+        padding: 0;
+    }
+
+    .box {
+        padding-right: 0;
+    }
+
+    .contact div {
+        width: 500px;
+    }
+} 
+
+@media only screen and (max-width: 610px) {
+    .cards {
+        grid-template-columns: 400px;
+        grid-template-rows: 220px 220px 220px 220px;
+        grid-template-areas:
+        "pcard1"
+        "pcard2"
+        "pcard3"
+        "action";
+    }
+
+    .portfolio {
+        height: 1300px;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    .portfolio {
+        padding-top: 200px;
+        height: 1200px;
+    }
+
+    .workplace img {
+        width: 300px;
+    }
+
+    .contact div {
+        width: 300px;
+    }
+
+    .sp-container {
+        display: inline-block;
+        padding: 100px 20px;
+    }
+
+    .bars {
+        padding: 50px 0 0 0;
+    }
+
+    .cards {
+        grid-template-columns: 300px;
+    }
+
+    .ground {
+        height: 100px;
+    }
 }
