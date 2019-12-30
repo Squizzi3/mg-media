@@ -198,23 +198,21 @@ nav a:hover {
 }
 
 .sp-container {
+    display: flex;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
     padding: 100px 0;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 500px 400px;
-    grid-template-rows: 100%;
 }
 
 .box {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 0 20px;
     font-size: 150%;
 }
 
 .bars {
-    grid-area: bars;
-    margin: auto 0;
-    padding-left: 50px;
+    width: 300px;
 }
 
 .bars div {
@@ -282,9 +280,7 @@ nav a:hover {
 }
 
 .person {
-    grid-area: person;
-    margin: 0 auto;
-    padding-right: 50px;
+    width: 500px;
 }
 
 .person h3 {
@@ -539,11 +535,6 @@ footer {
         height: 1080px;
     }
 
-    .sp-container {
-        grid-template-columns: 300px 200px;
-        grid-template-rows: 100%;
-    }
-
     .hexagon {
         position: relative;
         width: 200px; 
@@ -615,14 +606,6 @@ footer {
         font-size: 16pt;
     }
 
-    .person {
-        padding: 0;
-    }
-
-    .box {
-        padding-right: 0;
-    }
-
     .contact div {
         width: 500px;
     }
@@ -664,12 +647,15 @@ footer {
     }
 
     .sp-container {
-        display: inline-block;
-        padding: 100px 20px;
+        flex-direction: column;
+    }
+
+    .person {
+        width: 350px;
     }
 
     .bars {
-        padding: 50px 0 0 0;
+        padding-top: 50px;
     }
 
     .cards {
