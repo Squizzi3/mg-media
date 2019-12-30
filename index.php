@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="card action">
-                <p>Yours next?</p>
+                <a href="#contact"><p>Yours next?</p></a>
             </div>
         </div>
     </section>
@@ -111,15 +111,23 @@
     </section>
     <section class="contact" id="contact">
         <div>
-            <form action="action_page.php">
+        <?php
+            if(isset($_POST['submit'])) {
+                mail("gnodtke.martin@gmail.com", $_POST['subject'], 'Name: ' . $_POST['fname'], 'E-Mail: ' . $_POST['email'], $_POST['message']);
+            }
+            ?>
+            <form action="index.php">
                 <label for="fname">Full Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your Name">
+                <input type="text" id="fname" name="firstname" placeholder="Your Name" required>
 
                 <label for="email">E-Mail</label>
-                <input type="text" id="email" name="email" placeholder="Your E-Mail">
+                <input type="email" id="email" name="email" placeholder="Your E-Mail" required>
 
                 <label for="subject">Subject</label>
-                <textarea id="subject" name="subject" placeholder="Your Text" style="height:200px"></textarea>
+                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+
+                <label for="message">Message | Idea | Problem</label>
+                <textarea id="message" name="message" placeholder="Your Text" style="height:200px" required></textarea>
 
                 <input type="submit" value="Submit">
             </form>
