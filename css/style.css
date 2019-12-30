@@ -540,7 +540,7 @@ footer {
         width: 200px; 
         height: 115.47px;
         margin: 57.74px auto;
-        background-image: url(/img/martin.jpg);
+        background-image: url(../img/martin.jpg);
         background-size: auto 230.9401px;
         background-position: center;
       }
