@@ -416,6 +416,14 @@ textarea:focus {
     padding: 20px;
 }
 
+.error {
+    color: #c0392b;
+}
+
+.success {
+    color: #56913C;
+}
+
 footer {
     background-color: #0e0e0e;
     padding: 10px 0;

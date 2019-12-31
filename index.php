@@ -9,6 +9,9 @@
 
     <!-- Scripts | Links -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <script src="https://kit.fontawesome.com/0aa0d93f20.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
@@ -112,24 +115,83 @@
     <section class="contact" id="contact">
         <div>
         <?php
-            if(isset($_POST['submit'])) {
-                mail("gnodtke.martin@gmail.com", $_POST['subject'], 'Name: ' . $_POST['fname'], 'E-Mail: ' . $_POST['email'], $_POST['message']);
+            // define variables and set to empty values
+            $nameErr = $emailErr = $subjectErr = $messageErr = "";
+            $name = $email = $subject = $message = $success = "";
+
+            if (isset($_POST['submit'])) {
+                if (empty($_POST["fname"])) {
+                    $nameErr = "Name is required";
+                } else {
+                    $name = test_input($_POST["fname"]);
+
+                    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+                        $nameErr = "Only letters and white space allowed";
+                    }
+                }
+
+                if (empty($_POST["email"])) {
+                    $emailErr = "E-Mail is required";
+                } else {
+                    $email = test_input($_POST["email"]);
+
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $emailErr = "Invalid E-Mail format";
+                    }
+                }
+
+                if (empty($_POST["subject"])) {
+                    $subjectErr = "Subject is required";
+                } else {
+                    $subject = test_input($_POST["subject"]);
+                }
+
+                if (empty($_POST["message"])) {
+                    $messageErr = "Message is required";
+                } else {
+                    $message = test_input($_POST["message"]);
+                }
+
+                if(empty($nameErr) && empty($emailErr) && empty($subjectErr) && empty($messageErr)) {
+                    sendMail($name, $email, $subject, $message);
+                    $success = "E-Mail send successfully!";
+                }	
             }
-            ?>
-            <form action="index.php">
+
+            function test_input($data) {
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
+            }
+
+            function sendMail($subject, $email, $fname, $message) {
+                $mailTo = "kontakt@martin-gnodtke.de";
+                $headers = "From: " . $email;
+                $txt = "Diese E-Mail kommt von " . $fname . ".\n\n".$message;
+
+                mail($mailTo, $subject, $txt, $headers);
+            }
+        ?>
+            <form action="index.php#contact" method="post">
                 <label for="fname">Full Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your Name" required>
+                <span class="error"><?php if(!empty($nameErr)) { echo '* ' . $nameErr; }?></span>
+                <input type="text" id="fname" name="fname" placeholder="Your Name" value="<?php if(empty($success)) { echo $name; }?>" >
 
                 <label for="email">E-Mail</label>
-                <input type="email" id="email" name="email" placeholder="Your E-Mail" required>
+                <span class="error"><?php if(!empty($emailErr)) { echo '* ' . $emailErr; }?></span>
+                <input type="text" id="email" name="email" placeholder="Your E-Mail" value="<?php if(empty($success)) { echo $email; }?>" >
 
                 <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                <span class="error"><?php if(!empty($subjectErr)) { echo '* ' . $subjectErr; }?></span>
+                <input type="text" id="subject" name="subject" placeholder="Subject" value="<?php if(empty($success)) { echo $subject; }?>" >
 
                 <label for="message">Message | Idea | Problem</label>
-                <textarea id="message" name="message" placeholder="Your Text" style="height:200px" required></textarea>
+                <span class="error"><?php if(!empty($messageErr)) { echo '* ' . $messageErr; }?></span>
+                <textarea id="message" name="message" placeholder="Your Text" style="height:200px"><?php if(empty($success)) { echo $message; }?></textarea>
 
-                <input type="submit" value="Submit">
+                <input type="submit" name="submit" value="Submit">
+                <span class="success"><?php if(!empty($success)) { echo $success; }?></span>
             </form>
         </div>
     </section>
